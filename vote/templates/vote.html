@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
   <div class="jumbotron">
@@ -25,15 +26,17 @@
               </p>
               <p class="card-text">{{candidate.bio}}</p>
             </div>
-            {% if not vote %}
-              <div class="card-footer">
+            <div class="card-footer">
+              {% if not vote %}
                 <form method="post">
                   {% csrf_token %}
                   <input type="number" name="candidate_id" value="{{candidate.id}}" hidden>
                   <button type="submit" class="btn btn-primary">Vote ✔</button>
                 </form>
-              </div>
-            {% endif %}
+              {% else %}
+                {{ candidate.votes | intcomma }} Votes
+              {% endif %}
+            </div>
           </div>
         {% endfor %}
       </div>
