@@ -29,7 +29,7 @@
                 {{candidate.full_name}}
               </h4>
               <p>
-                <span class="badge badge-secondary pull-right">{{candidate.get_party}}</span>
+                <span class="badge badge-{% if candidate.party == 'republican' %}danger{% else %}primary{% endif %} pull-right">{{candidate.get_party}}</span>
               </p>
               <p class="card-text">{{candidate.bio}}</p>
             </div>
@@ -38,7 +38,7 @@
                 <form method="post">
                   {% csrf_token %}
                   <input type="number" name="candidate_id" value="{{candidate.id}}" hidden>
-                  <button type="submit" class="btn btn-primary">Vote ✔</button>
+                  <button type="submit" class="btn btn-{% if candidate.party == 'republican' %}danger{% else %}primary{% endif %}">Vote ✔</button>
                 </form>
               {% else %}
                 {{ candidate.votes | intcomma }} Votes
