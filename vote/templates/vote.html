@@ -11,6 +11,13 @@
       <p class="lead">Welcome to the official site of the U.S. Presidential Election. Take some time to learn about the candidates and then cast your vote.</p>
     {% endif %}
   </div>
+  {% if vote %}
+    <h2>Live Results</h2>
+    <div class="progress mb-4">
+      <div class="progress-bar bg-danger" role="progressbar" style="width:{{votes.republican_percentage}}%;" aria-valuenow="{{votes.republican}}" aria-valuemin="0" aria-valuemax="{{votes.total}}">{{votes.republican_percentage}}%</div>
+      <div class="progress-bar bg-primary" role="progressbar" style="width:{{votes.democratic_percentage}}%;" aria-valuenow="{{votes.democratic}}" aria-valuemin="0" aria-valuemax="{{votes.total}}">{{votes.democratic_percentage}}%</div>
+    </div>
+  {% endif %}
   <div class="row">
     <div class="col-sm">
       <div class="card-group{% if vote %} voted{% endif %}">
